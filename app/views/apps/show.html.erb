@@ -1,4 +1,6 @@
 <p id="notice"><%= notice %></p>
+<h4><%= @app.name %></h4>
+<p><%= @app.description %></p>
 
-<%= link_to 'Edit', edit_app_path(@app) %> |
-<%= link_to 'Back', apps_path %>
+<%= link_to 'Редактировать', edit_app_path(@app) %> |
+<%= link_to 'Назад', apps_path %>

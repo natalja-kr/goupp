@@ -6,7 +6,6 @@ class AppsController < ApplicationController
   # GET /apps.json
   def index
     @apps = current_user.apps
-    render layout: 'dashboard'
   end
 
   # GET /apps/1
