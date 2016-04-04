@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'dashboard/index'
+  get 'help' => 'dashboard#help'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
