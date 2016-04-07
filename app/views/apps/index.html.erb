@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Все приложения</h1>
 
 <table class="table">
@@ -15,9 +13,9 @@
         <td><%= app.name %></td>
         <td><%= app.description %></td>
         <td>
-          <%= link_to 'Просмотр', app %>
-          <%= link_to 'Редактировать', edit_app_path(app) %>
-          <%= link_to 'Удалить', app, method: :delete, data: { confirm: 'Вы уверены?' } %>
+          <%= link_to (fa_icon "eye"), app %>&nbsp;
+          <%= link_to (fa_icon "edit"), edit_app_path(app) %>&nbsp;
+          <%= link_to (fa_icon "remove"), app, method: :delete, data: { confirm: 'Вы уверены?' } %>
         </td>
       </tr>
     <% end %>
