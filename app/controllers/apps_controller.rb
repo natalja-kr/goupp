@@ -14,6 +14,7 @@ class AppsController < ApplicationController
   end
 
   # GET /apps/new
+
   def new
     @app = App.new
   end
