@@ -1,0 +1,43 @@
+<h1>Рекламная кампания</h1>
+<p><b>Приложение:</b> <%= @campaign.app.name %></p>
+<p><b>Версия ОС для ротации:</b> <%= @campaign.operator %>&nbsp;<%= @campaign.version.name %></p>
+<p><b>Ротация в категориях:</b> </p>
+<% @campaign.categories.each do |c| %>
+    <p><%= c.name %></p>
+<% end %>
+<p><b>Ротация в странах:</b> </p>
+<% @campaign.countries.each do |c| %>
+    <p><%= c.name %></p>
+<% end %>
+
+<%= link_to 'Редактировать', edit_campaign_path(@campaign) %> |
+<%= link_to 'Назад', campaigns_path %>
+
+
+<h1>Виды рекламы</h1>
+
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>Тип</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @creatives.each do |creative| %>
+      <tr>
+        <td><%= creative.type_str %></td>
+        <td>
+          <%= link_to (fa_icon "eye"), [@campaign,creative] %>&nbsp;
+          <%= link_to (fa_icon "edit"), edit_campaign_creative_path(@campaign, creative) %>&nbsp;
+          <%= link_to (fa_icon "remove"), [@campaign,creative], method: :delete, data: { confirm: 'Вы уверены?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Новый вид', new_campaign_creative_path(@campaign) %>

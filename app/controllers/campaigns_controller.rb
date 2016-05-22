@@ -25,10 +25,10 @@ class CampaignsController < ApplicationController
   # POST /campaigns.json
   def create
     @campaign = Campaign.new(campaign_params)
-
+    @campaign.count_demonstration = 1000
     respond_to do |format|
       if @campaign.save
-        format.html { redirect_to @campaign, notice: 'Campaign was successfully created.' }
+        format.html { redirect_to campaign_creatives_url(@campaign), notice: 'Кампания создана.' }
         format.json { render :show, status: :created, location: @campaign }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class CampaignsController < ApplicationController
   def update
     respond_to do |format|
       if @campaign.update(campaign_params)
-        format.html { redirect_to @campaign, notice: 'Campaign was successfully updated.' }
+        format.html { redirect_to campaign_creatives_url(@campaign), notice: 'Кампания обновлена.' }
         format.json { render :show, status: :ok, location: @campaign }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class CampaignsController < ApplicationController
   def destroy
     @campaign.destroy
     respond_to do |format|
-      format.html { redirect_to campaigns_url, notice: 'Campaign was successfully destroyed.' }
+      format.html { redirect_to campaigns_url, notice: 'Кампания удалена.' }
       format.json { head :no_content }
     end
   end

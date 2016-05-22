@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Приложение</th>
-      <th>Количество показов</th>
+      <th>Осталось показов</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,9 +15,9 @@
     <% @campaigns.each do |campaign| %>
       <tr>
         <td><%= campaign.app.name %></td>
-        <td>?</td>
+        <td><%= campaign.count_demonstration %></td>
         <td>
-          <%= link_to (fa_icon "eye"), campaign %>&nbsp;
+          <%= link_to (fa_icon "eye"), campaign_creatives_path(campaign) %>&nbsp;
           <%= link_to (fa_icon "edit"), edit_campaign_path(campaign) %>&nbsp;
           <%= link_to (fa_icon "remove"), campaign, method: :delete, data: { confirm: 'Вы уверены?' } %>
         </td>

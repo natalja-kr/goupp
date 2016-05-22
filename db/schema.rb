@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503121506) do
+ActiveRecord::Schema.define(version: 20160522182526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,8 +57,9 @@ ActiveRecord::Schema.define(version: 20160503121506) do
     t.integer  "app_id"
     t.integer  "version_id"
     t.string   "operator"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "count_demonstration"
   end
 
   add_index "campaigns", ["app_id"], name: "index_campaigns_on_app_id", using: :btree
