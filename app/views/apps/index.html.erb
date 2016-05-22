@@ -1,4 +1,4 @@
-<h1>Все приложения</h1>
+<h1>Мои приложения</h1>
 
 <table class="table">
   <thead>
@@ -10,6 +10,8 @@
   <tbody>
     <% @apps.each do |app| %>
       <tr>
+        <% icon_platform = app.platform.name == 'ios' ? 'apple' : app.platform.name %>
+        <td style="width: 20px"><%= fa_icon("#{icon_platform} 2x") %></td>
         <td><%= app.name %></td>
         <td><%= app.description %></td>
         <td>
@@ -25,3 +27,4 @@
 <br>
 
 <%= link_to 'Добавить', new_app_path %>
+

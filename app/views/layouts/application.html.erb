@@ -1,19 +1,64 @@
 <!DOCTYPE html>
-<html style="height: 100%">
+<html>
 <head>
   <title>Goupp</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <style>
+    html, body, .container {
+      height: 100%;
+    }
+
+    .container {
+      display: table;
+      width: 100%;
+      padding-top: 50px;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    .row {
+      height: 100%;
+      display: table-row;
+    }
+
+    .col-md-3.no-float, .col-md-9.no-float {
+      float: none; /* thanks baxabbit */
+    }
+
+    .col-md-3 {
+      display: table-cell;
+      background: rgba(255, 244, 246, 0.69);
+      width: 25%;
+    }
+
+    .col-md-9 {
+      display: table-cell;
+      background: #fffff7;
+      width: 75%;
+    }
+
+  </style>
 </head>
-<body style="background-image: url(/images/maxresdefault.jpg); height: 100%;">
+<body>
 <%= render 'layouts/header' %>
-<!--img src="/images/maxresdefault.jpg"-->
-<div class="container" style="margin-top: 50px; height: 100%;">
+<div class="container">
+  <div class="row" style="">
+    <div class="col-md-3 no-float sidebar-nav">
+      <%= render 'layouts/sidebar' %>
+    </div>
+    <div class="col-md-9 no-float">
+      <% if notice %>
+          <br>
+          <div class="alert alert-info">
+            <%= notice %>
+          </div>
+      <% end %>
+      <%= yield %>
+    </div>
 
-  <%= yield %>
-  <%= render 'layouts/footer' %>
+  </div>
 </div>
-
 </body>
 </html>

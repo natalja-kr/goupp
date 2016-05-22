@@ -1,6 +1,10 @@
-<p id="notice"><%= notice %></p>
-<h4><%= @app.name %></h4>
-<p><%= @app.description %></p>
+<h1><%= @app.name %></h1>
+<p><b>Описание:</b> <%= @app.description %></p>
+<p><b>Платформа:</b> <%= @app.platform.name %></p>
+<p><b>Привязано к категориям:</b> </p>
+<% @app.categories.each do |c| %>
+    <p><%= c.name %></p>
+<% end %>
 
 <%= link_to 'Редактировать', edit_app_path(@app) %> |
 <%= link_to 'Назад', apps_path %>

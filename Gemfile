@@ -27,6 +27,7 @@ gem 'devise'
 gem 'rails_admin'
 gem "twitter-bootstrap-rails"
 gem "font-awesome-rails"
+gem 'public_activity'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -42,6 +43,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'jazz_fingers'
 end
 
 group :development do

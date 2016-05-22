@@ -16,6 +16,17 @@
     <%= f.text_field :name, class: 'form-control' %>
     <%= f.label 'Описание' %><br/>
     <%= f.text_area :description, class: 'form-control' %><br>
-    <%= f.submit 'Сохранить', class: 'btn btn-primary' %>
+    <%= f.label 'Платформа' %><br/>
+    <%= f.select(:platform_id) do %>
+        <% Platform.all.each do |p| %>
+            <%= content_tag(:option, p.name, value: p.id) %>
+        <% end %>
+    <% end %><br><br>
+    <%= f.label 'Категории' %><br/>
+    <%= hidden_field_tag("app[category_ids][]", nil) %>
+    <% Category.order(:name).each do |category| %>
+        <label><%= check_box_tag("app[category_ids][]", category.id, category.id.in?(@app.categories.collect(&:id))) %> <%= category.name %></label><br>
+    <% end %>
+    <%= f.submit 'Сохранить', class: 'btn btn-primary' %><br><br>
   </div>
 <% end %>
