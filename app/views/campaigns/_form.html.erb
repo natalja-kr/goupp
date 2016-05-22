@@ -12,6 +12,31 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.label 'Приложение' %><br/>
+    <%= f.select(:app_id) do %>
+        <% current_user.apps.each do |p| %>
+            <%= content_tag(:option, p.name, value: p.id) %>
+        <% end %>
+    <% end %><br><br>
+    <%= f.label 'Версия' %><br/>
+    <%= f.select(:version_id) do %>
+        <% Version.all.each do |p| %>
+            <%= content_tag(:option, p.name, value: p.id) %>
+        <% end %>
+    <% end %><br><br>
+    <%= f.label 'Оператор' %><br/>
+    <%= f.text_field :operator, class: 'form-control' %><br>
+    <%= f.label 'Категории' %><br/>
+    <%= hidden_field_tag("campaign[category_ids][]", nil) %>
+    <% Category.order(:name).each do |category| %>
+        <label><%= check_box_tag("campaign[category_ids][]", category.id, category.id.in?(@campaign.categories.collect(&:id))) %> <%= category.name %></label><br>
+    <% end %>
+
+    <%= f.label 'Страны ротации' %><br/>
+    <%= hidden_field_tag("app[category_ids][]", nil) %>
+    <% Country.order(:name).each do |country| %>
+        <label><%= check_box_tag("campaign[country_ids][]", country.id, country.id.in?(@campaign.countries.collect(&:id))) %> <%= country.name %></label>
+    <% end %><br/>
+    <%= f.submit 'Сохранить', class: 'btn btn-primary' %><br/><br/>
   </div>
 <% end %>

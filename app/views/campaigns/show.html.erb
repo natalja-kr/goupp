@@ -1,4 +1,16 @@
-<p id="notice"><%= notice %></p>
+<h1>Рекламная кампания</h1>
+<p><b>Приложение:</b> <%= @campaign.app.name %></p>
+<p><b>Версия ОС для ротации:</b> <%= @campaign.operator %>&nbsp;<%= @campaign.version.name %></p>
+<p><b>Ротация в категориях:</b> </p>
+<% @campaign.categories.each do |c| %>
+    <p><%= c.name %></p>
+<% end %>
+<p><b>Ротация в странах:</b> </p>
+<% @campaign.countries.each do |c| %>
+    <p><%= c.name %></p>
+<% end %>
 
-<%= link_to 'Edit', edit_campaign_path(@campaign) %> |
-<%= link_to 'Back', campaigns_path %>
+
+
+<%= link_to 'Редактировать', edit_campaign_path(@campaign) %> |
+<%= link_to 'Назад', campaigns_path %>

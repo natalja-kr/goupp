@@ -8,4 +8,10 @@ class Campaign < ActiveRecord::Base
   validates :app_id, presence: true
   validates :version_id, presence: true
   validates :operator, presence: true
+
+  public
+  def self.my_campaigns(user)
+    apps = user.apps
+    campaigns = self.where(app_id: apps)
+  end
 end

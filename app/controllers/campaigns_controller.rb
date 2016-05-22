@@ -4,7 +4,7 @@ class CampaignsController < ApplicationController
   # GET /campaigns
   # GET /campaigns.json
   def index
-    @campaigns = Campaign.all
+    @campaigns = Campaign.my_campaigns(current_user)
   end
 
   # GET /campaigns/1
