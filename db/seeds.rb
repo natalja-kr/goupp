@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
+=begin
 countries = [
     'Австралия', 'Австрия', 'Азербайджан', 'Албания', 'Алжир', 'Американский Самоа', 'Ангилья',
     'Англия', 'Ангола', 'Андорра', 'Антарктика', 'Антигуа и Барбуда', 'Антильские острова', 'Арабские Эмираты',
@@ -44,4 +44,54 @@ countries = [
 
 countries.each do |c|
     country = Country.create(name: c)
+end
+=end
+
+user_id = 1
+
+platforms = Platform.all
+versions = Version.all
+operators = ['>', '<', '=']
+categories = Category.all
+countries = Country.all
+
+5.times do |i|
+  app = App.new(name: "Приложение # #{i}", description: "Приложение создано в целях тестирования работы сервиса продвижения", user_id: user_id)
+  app.platform = platforms.sample
+  app.categories << categories.sample(2)
+  app.save
+end
+
+apps = App.all
+
+apps.each do |app|
+  3.times do
+    camp = Campaign.new(app_id: app.id)
+    camp.categories << categories.sample(2)
+    camp.countries << countries.sample(3)
+    camp.version = versions.sample
+    camp.operator = operators.sample
+    camp.count_demonstration = 1000
+    camp.save
+
+    banner1 = Array(1..7).sample
+    banner2 = Array(1..7).sample
+    Creative.create(type: 0, description: "", campaign_id: camp.id, image: File.new("#{Rails.root}/public/seed_banners/banner#{banner1}.jpg"))
+    Creative.create(type: 0, description: "", campaign_id: camp.id, image: File.new("#{Rails.root}/public/seed_banners/banner#{banner2}.jpg"))
+    Creative.create(type: 1, description: "Рекламная запись (кликни сюда)", campaign_id: camp.id)
+  end
+end
+
+campaigns = Campaign.all
+
+5000.times do |i|
+  s = Statistic.new()
+  d = Array(1..31).sample
+  s.created_at = "2016-04-#{d}"
+  c = campaigns.sample
+  c.count_demonstration -= 1
+  c.save
+  s.campaign = c
+  s.creative = c.creatives.sample
+  s.save
 end

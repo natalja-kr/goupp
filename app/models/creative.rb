@@ -1,7 +1,7 @@
 class Creative < ActiveRecord::Base
   self.inheritance_column = nil
   belongs_to :campaign
-
+  belongs_to :statistic, dependent: :destroy
   validates :type, presence: true
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }

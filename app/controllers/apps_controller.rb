@@ -10,6 +10,7 @@ class AppsController < ApplicationController
   # GET /apps/1
   # GET /apps/1.json
   def show
+    @campaigns = @app.campaigns
   end
 
   # GET /apps/new

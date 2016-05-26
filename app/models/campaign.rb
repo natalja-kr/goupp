@@ -3,7 +3,8 @@ class Campaign < ActiveRecord::Base
   belongs_to :version
   has_and_belongs_to_many :countries
   has_and_belongs_to_many :categories
-  has_many :creatives
+  has_many :creatives, dependent: :destroy
+  has_many :statistics, dependent: :destroy
 
   validates :app_id, presence: true
   validates :version_id, presence: true

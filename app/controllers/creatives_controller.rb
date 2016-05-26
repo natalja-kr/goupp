@@ -5,7 +5,7 @@ class CreativesController < ApplicationController
   # GET /creatives
   # GET /creatives.json
   def index
-    @creatives = Creative.all
+    @creatives = @campaign.creatives
   end
 
   # GET /creatives/1
@@ -26,6 +26,7 @@ class CreativesController < ApplicationController
   # POST /creatives.json
   def create
     @creative = Creative.new(creative_params)
+    @creative.campaign = @campaign
 
     respond_to do |format|
       if @creative.save
@@ -74,6 +75,6 @@ class CreativesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def creative_params
-      params.require(:creative).permit(:type, :image, :description)
+      params.require(:creative).permit(:type, :image, :description, :campaign_id)
     end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160523143448) do
+ActiveRecord::Schema.define(version: 20160526150136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,17 @@ ActiveRecord::Schema.define(version: 20160523143448) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "statistics", force: :cascade do |t|
+    t.integer  "campaign_id"
+    t.integer  "creative_id"
+    t.integer  "act"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "statistics", ["campaign_id"], name: "index_statistics_on_campaign_id", using: :btree
+  add_index "statistics", ["creative_id"], name: "index_statistics_on_creative_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -148,4 +159,6 @@ ActiveRecord::Schema.define(version: 20160523143448) do
   add_foreign_key "campaigns_countries", "campaigns"
   add_foreign_key "campaigns_countries", "countries"
   add_foreign_key "creatives", "campaigns"
+  add_foreign_key "statistics", "campaigns"
+  add_foreign_key "statistics", "creatives"
 end

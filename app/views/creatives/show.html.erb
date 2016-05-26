@@ -5,5 +5,5 @@
     <p><%= @creative.description %></p>
 <% end %>
 <br>
-<%= link_to 'Редактировать', edit_campaign_creative_path(@campaign,@creative) %> |
-<%= link_to 'Назад', campaign_creatives_path(@campaign) %>
+<%= link_to 'Кампания', campaign_creatives_path(@campaign) %>|<%= link_to 'Редактировать', edit_campaign_creative_path(@campaign,@creative) %> |
+<%= link_to "Назад", :back %>
