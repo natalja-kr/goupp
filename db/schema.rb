@@ -160,5 +160,4 @@ ActiveRecord::Schema.define(version: 20160526150136) do
   add_foreign_key "campaigns_countries", "countries"
   add_foreign_key "creatives", "campaigns"
   add_foreign_key "statistics", "campaigns"
-  add_foreign_key "statistics", "creatives"
 end
