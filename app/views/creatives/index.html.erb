@@ -41,3 +41,8 @@
 <br>
 
 <%= link_to 'Новый вид', new_campaign_creative_path(@campaign) %>
+
+<%= line_chart @creatives.map { |creative|
+  {name: creative.type_str, data: Statistic.where(creative_id: creative.id, act: 1).group_by_day(:created_at).count}
+} %>
+<%= line_chart Statistic.where(campaign_id: @campaign.id).group_by_day(:created_at).count, name: 'Всего' %>

@@ -87,11 +87,13 @@ campaigns = Campaign.all
 5000.times do |i|
   s = Statistic.new()
   d = Array(1..31).sample
+  a = [0,1].sample
   s.created_at = "2016-04-#{d}"
   c = campaigns.sample
   c.count_demonstration -= 1
   c.save
   s.campaign = c
   s.creative = c.creatives.sample
+  s.act = a
   s.save
 end

@@ -4,7 +4,8 @@ class Statistic < ActiveRecord::Base
 
   TYPEACT = {0 => 'Закрыть', 1 => 'Клик'}
 
-  def type_act
-    TYPEACT[self.act]
+  def self.type_act(act)
+    TYPEACT[act]
   end
+
 end

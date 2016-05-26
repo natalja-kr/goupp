@@ -1,9 +1,14 @@
 <h1>Реклама</h1>
 <% if @creative.image.url != "/images/original/missing.png" %>
-   <%= image_tag @creative.image.url %>
+   <%= image_tag @creative.image.url, width: '700' %>
 <% else %>
     <p><%= @creative.description %></p>
 <% end %>
 <br>
 <%= link_to 'Кампания', campaign_creatives_path(@campaign) %>|<%= link_to 'Редактировать', edit_campaign_creative_path(@campaign,@creative) %> |
 <%= link_to "Назад", :back %>
+
+<%= line_chart [0,1].map { |act|
+  {name: Statistic.type_act(act), data: Statistic.where(creative_id: @creative.id, act: act).group_by_day(:created_at).count}
+} %>
+

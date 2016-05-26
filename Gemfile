@@ -29,6 +29,8 @@ gem "twitter-bootstrap-rails"
 gem "font-awesome-rails"
 gem 'public_activity'
 gem "paperclip"
+gem "chartkick"
+gem 'groupdate'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
