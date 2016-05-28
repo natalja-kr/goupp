@@ -12,6 +12,10 @@
   <% end %>
 
   <div class="actions">
+    <%= f.label 'Название' %><br/>
+    <%= f.text_field :name, class: 'form-control' %>
+    <%= f.label 'Ссылка' %><br/>
+    <%= f.text_field :url, class: 'form-control' %>
     <%= f.label 'Приложение' %><br/>
     <%= f.select(:app_id) do %>
         <% current_user.apps.each do |p| %>

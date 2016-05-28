@@ -65,8 +65,8 @@ end
 apps = App.all
 
 apps.each do |app|
-  3.times do
-    camp = Campaign.new(app_id: app.id)
+  3.times do |i|
+    camp = Campaign.new(app_id: app.id, name: "Рекламная кампания #{i}", url: 'https://www.google.by')
     camp.categories << categories.sample(2)
     camp.countries << countries.sample(3)
     camp.version = versions.sample
@@ -77,7 +77,7 @@ apps.each do |app|
     banner1 = Array(1..7).sample
     banner2 = Array(1..7).sample
     Creative.create(type: 0, description: "", campaign_id: camp.id, image: File.new("#{Rails.root}/public/seed_banners/banner#{banner1}.jpg"))
-    Creative.create(type: 0, description: "", campaign_id: camp.id, image: File.new("#{Rails.root}/public/seed_banners/banner#{banner2}.jpg"))
+    #Creative.create(type: 0, description: "", campaign_id: camp.id, image: File.new("#{Rails.root}/public/seed_banners/banner#{banner2}.jpg"))
     Creative.create(type: 1, description: "Рекламная запись (кликни сюда)", campaign_id: camp.id)
   end
 end

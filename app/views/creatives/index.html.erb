@@ -1,4 +1,6 @@
 <h1>Рекламная кампания</h1>
+<p><b>Название:</b> <%= @campaign.name %></p>
+<p><b>Ссылка:</b> <%= @campaign.url %></p>
 <p><b>Приложение:</b> <%= @campaign.app.name %></p>
 <p><b>Версия ОС для ротации:</b> <%= @campaign.operator %>&nbsp;<%= @campaign.version.name %></p>
 <p><b>Ротация в категориях:</b> </p>
@@ -25,7 +27,7 @@
     </tr>
   </thead>
 
-  
+
   <tbody>
     <% @creatives.each do |creative| %>
       <tr>
