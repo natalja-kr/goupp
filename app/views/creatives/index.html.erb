@@ -21,6 +21,7 @@
     <tr>
       <th>Тип</th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -28,6 +29,13 @@
     <% @creatives.each do |creative| %>
       <tr>
         <td><%= creative.type_str %></td>
+        <td>
+          <% if creative.image.url != "/images/original/missing.png" %>
+              <%= image_tag creative.image.url, width: '100' %>
+          <% else %>
+              <%= creative.description %>
+          <% end %>
+        </td>
         <td>
           <%= link_to (fa_icon "eye"), [@campaign,creative] %>&nbsp;
           <%= link_to (fa_icon "edit"), edit_campaign_creative_path(@campaign, creative) %>&nbsp;
