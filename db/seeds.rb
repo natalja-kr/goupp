@@ -65,7 +65,7 @@ end
 apps = App.all
 
 apps.each do |app|
-  3.times do |i|
+  [2,3].sample.times do |i|
     camp = Campaign.new(app_id: app.id, name: "Рекламная кампания #{i}", url: 'https://www.google.by')
     camp.categories << categories.sample(2)
     camp.countries << countries.sample(3)
