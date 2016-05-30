@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   get 'dashboard/index'
+  get 'dashboard/help'
+  get 'dashboard/api'
+  post 'dashboard/api' => 'dashboard#api'
   get 'help' => 'dashboard#help'
+  get 'api/get_adv/:categories' => 'api/advert#get_advert'
+  get 'api/set_stat/:id' => 'api/advert#set_stat'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users

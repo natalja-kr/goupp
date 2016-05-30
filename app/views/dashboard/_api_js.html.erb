@@ -1,0 +1,9 @@
+function get_adv(div_id){
+  $.ajax({
+    method: "GET",
+    url: "http://localhost:3000/api/get_adv/<%= categories.join(',') %>"
+  })
+  .done(function( msg ) {
+    $("#"+div_id).html(msg);
+  });
+}

@@ -1,0 +1,25 @@
+<h1>Получение api для показа рекламы</h1>
+<p>Для получения кода выберите категорию проекта, в котором будет производиться показ рекламных материалов</p>
+
+<%= form_tag("/dashboard/api", method: "post") do %>
+    <% Category.order(:name).each do |category| %>
+        <label><%= check_box_tag("category_ids[]", category.id) %> <%= category.name %></label><br>
+    <% end %>
+    <%= submit_tag "Выбрать", class: 'btn btn-primary' %>
+<% end %>
+<hr>
+<% if @categories %>
+    Ваша api функция
+    <pre><%= render 'api_js', categories: @categories %></pre>
+<% end %>
+
+<script>
+  $.ajax({
+    type: "GET",
+    url: "http://localhost:3000/api/get_adv/6,1",
+    dataType: "json",
+    success: function(data){
+      alert(data) // Will alert Max
+    }
+  });
+</script>
