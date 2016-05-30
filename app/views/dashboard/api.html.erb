@@ -9,17 +9,25 @@
 <% end %>
 <hr>
 <% if @categories %>
-    Ваша api функция
-    <pre><%= render 'api_js', categories: @categories %></pre>
+    <p>Получить JSON для выбранных категорий можно по адресу</p>
+    <pre>https://goupp.herokuapp.com/api/get_adv/<%= @categories.join(',') %></pre>
+    <p>JSON поставляется в формате:</p>
+    <pre>
+      {
+        "stat_id":10024,
+        "image_url":"https://goupp.herokuapp.com/system/creatives/images/000/000/246/original/banner5.jpg?1464434839",
+        "description":"",
+        "url":"https://my.url",
+        "is_img":1
+      }
+    </pre>
+    <p>Где</p>
+    <p><b>is_img</b> флаг, будет ли реклама в формате баннера (если нет - то просто текст)</p>
+    <p><b>stat_id</b> номер строки в статистике (для отправки данных)</p>
+    <p><b>image_url</b> ссылка на баннер</p>
+    <p><b>description</b> рекламный текст</p>
+    <p><b>url</b> рекламная ссылка</p>
+
 <% end %>
 
-<script>
-  $.ajax({
-    type: "GET",
-    url: "http://localhost:3000/api/get_adv/6,1",
-    dataType: "json",
-    success: function(data){
-      alert(data) // Will alert Max
-    }
-  });
-</script>
+

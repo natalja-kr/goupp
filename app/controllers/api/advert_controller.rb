@@ -5,18 +5,19 @@ class Api::AdvertController < ActionController::Base
   def get_advert
 
     headers['Last-Modified'] = Time.now.httpdate
-    @categories = params[:categories]
-    @creative = Creative.last
-    @campaign = @creative.campaign
+
+    ids = params[:categories].split(',')
+    @category = Category.where(id: ids).order("RANDOM()").limit(1).last
+    @campaign = @category.campaigns.where('count_demonstration > 0').sample
+    @creative = @campaign.creatives.sample
+
     @campaign.count_demonstration -= 1
     @campaign.save
 
     @stat = Statistic.create(campaign_id: @campaign.id, creative_id: @creative.id, act: 0)
     @json = {
-        id: @creative.id,
-        campaign_id: @creative.campaign_id,
         stat_id: @stat.id,
-        image_url: 'http://localhost:3000' + @creative.image.url,
+        image_url: 'https://goupp.herokuapp.com' + @creative.image.url,
         description: @creative.description,
         url: @campaign.url,
         is_img: @creative.image.url == '/images/original/missing.png' ? 0 : 1
