@@ -20,15 +20,19 @@ require 'rails_helper'
 
 RSpec.describe CampaignsController, type: :controller do
 
+  user_sign_in
+  let(:platform) { create :platform }
+  let(:version) { create :version }
+  let(:app) { create(:app, user: @user, platform: platform) }
   # This should return the minimal set of attributes required to create a valid
   # Campaign. As you add validations to Campaign, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {app_id: app.id, version_id: version.id, operator: ">"}
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {app_id: app.id, version_id: version.id}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -81,10 +85,6 @@ RSpec.describe CampaignsController, type: :controller do
         expect(assigns(:campaign)).to be_persisted
       end
 
-      it "redirects to the created campaign" do
-        post :create, {:campaign => valid_attributes}, valid_session
-        expect(response).to redirect_to(Campaign.last)
-      end
     end
 
     context "with invalid params" do
@@ -103,26 +103,13 @@ RSpec.describe CampaignsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {app_id: app.id, version_id: version.id, operator: "<"}
       }
-
-      it "updates the requested campaign" do
-        campaign = Campaign.create! valid_attributes
-        put :update, {:id => campaign.to_param, :campaign => new_attributes}, valid_session
-        campaign.reload
-        skip("Add assertions for updated state")
-      end
 
       it "assigns the requested campaign as @campaign" do
         campaign = Campaign.create! valid_attributes
         put :update, {:id => campaign.to_param, :campaign => valid_attributes}, valid_session
         expect(assigns(:campaign)).to eq(campaign)
-      end
-
-      it "redirects to the campaign" do
-        campaign = Campaign.create! valid_attributes
-        put :update, {:id => campaign.to_param, :campaign => valid_attributes}, valid_session
-        expect(response).to redirect_to(campaign)
       end
     end
 
@@ -133,11 +120,6 @@ RSpec.describe CampaignsController, type: :controller do
         expect(assigns(:campaign)).to eq(campaign)
       end
 
-      it "re-renders the 'edit' template" do
-        campaign = Campaign.create! valid_attributes
-        put :update, {:id => campaign.to_param, :campaign => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
-      end
     end
   end
 

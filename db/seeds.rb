@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-=begin
+
 countries = [
     'Австралия', 'Австрия', 'Азербайджан', 'Албания', 'Алжир', 'Американский Самоа', 'Ангилья',
     'Англия', 'Ангола', 'Андорра', 'Антарктика', 'Антигуа и Барбуда', 'Антильские острова', 'Арабские Эмираты',
@@ -45,7 +45,6 @@ countries = [
 countries.each do |c|
     country = Country.create(name: c)
 end
-=end
 
 user_id = 1
 

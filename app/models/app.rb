@@ -10,5 +10,4 @@ class App < ActiveRecord::Base
   validates :description, presence: true
   validates :user_id, presence: true
   validates :platform_id, presence: true
-
 end
