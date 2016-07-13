@@ -47,6 +47,8 @@ class AppsController < ApplicationController
 
   # PATCH/PUT /apps/1
   # PATCH/PUT /apps/1.json
+
+
   def update
     respond_to do |format|
       if @app.update(app_params)
