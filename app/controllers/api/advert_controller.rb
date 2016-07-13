@@ -17,14 +17,11 @@ class Api::AdvertController < ActionController::Base
     @stat = Statistic.create(campaign_id: @campaign.id, creative_id: @creative.id, act: 0)
     @json = {
         stat_id: @stat.id,
-        image_url: 'https://goupp.herokuapp.com' + @creative.image.url,
+        image_url: 'http://localhost:3000' + @creative.image.url,
         description: @creative.description,
         url: @campaign.url,
         is_img: @creative.image.url == '/images/original/missing.png' ? 0 : 1
     }
-
-
-
     render :json => @json
   end
 

@@ -12,6 +12,9 @@
     <!-- Tab panes -->
     <div class="tab-content" style="background-color: rgba(255, 255, 255, 0.64); padding: 20px">
       <div role="tabpanel" class="tab-pane active" id="home">
+        <div class="alert alert-info">
+          <%= notice %>
+        </div>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="field">
               <%= f.label :email %><br/>
